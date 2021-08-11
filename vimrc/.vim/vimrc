@@ -79,4 +79,5 @@ noremap <leader>f :Files<cr>
 noremap <leader>w :w<cr>
 nmap <F5> :set invrelativenumber<CR>
 
+" Remove whitespace after save
 autocmd BufWritePre * %s/\s\+$//e
