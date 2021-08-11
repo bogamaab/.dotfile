@@ -54,11 +54,15 @@ Plug 'lifepillar/pgsql.vim'
 
 call plug#end()
 
+" Colorscheme
 "colorscheme nord
 colorscheme gruvbox
-let g:airline_powerline_fonts=1
 set background=dark
-"let g:airline_statusline_ontop=1
+
+" Vim airline
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1 " Enable tabline in the top of terminal
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 hi Normal guibg=NONE ctermbg=NONE
 " Mark trailing spaces depending on whether we have a fancy terminal or not
