@@ -162,4 +162,5 @@ alias eslint='./node_modules/.bin/eslint'
 
 alias rm-trash='sudo rm -rf public/packs public/packs-test tmp/storage storage tmp/pids/server.pid log'
 
+# to install starship: https://starship.rs/es-es/
 eval "$(starship init bash)"
