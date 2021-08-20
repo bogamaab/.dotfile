@@ -4,6 +4,7 @@ syntax enable
 set nocompatible		" disable vi compability mode
 set noswapfile			" don't create swapfiles
 set nobackup			" don't backup, use git!
+set guicursor=
 
 " Enable filetype
 filetype plugin indent on
@@ -35,6 +36,7 @@ set incsearch
 
 set showcmd  		        " show vim commands in normal mode
 set colorcolumn=80
+set signcolumn=yes
 
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 
