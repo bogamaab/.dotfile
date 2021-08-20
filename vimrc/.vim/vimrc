@@ -47,9 +47,11 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-"Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-endwise'
 Plug 'ap/vim-css-color'
+" Syntax highlight and other functions for some languages
+Plug 'vim-ruby/vim-ruby'
 Plug 'lifepillar/pgsql.vim'
 
 call plug#end()
@@ -63,6 +65,15 @@ set background=dark
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1 " Enable tabline in the top of terminal
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+
+"FZF
+let g:fzf_layout = { 'right': '50%' }
+let $FZF_DEFAULTS_OPTS='--reverse'
+
+" Vim Ruby, some settings
+let ruby_operators = 1
+let ruby_pseudo_operators = 1
+let g:rubycomplete_rails = 1
 
 hi Normal guibg=NONE ctermbg=NONE
 " Mark trailing spaces depending on whether we have a fancy terminal or not
@@ -79,11 +90,30 @@ let $RTP=split(&runtimepath, ',')[0]
 let $RC="$HOME/.vim/vimrc"
 let mapleader=" "
 
+
+" Search and result center my screen
+nmap n nzzzv
+nmap N nzzzv
+
+" Moving text
+vmap J :m '>+1'<CR>gv=gv
+vmap K :m '<-2'<CR>gv=gv
+imap <C-j> <esc>:m .+1<CR>==
+imap <C-k> <esc>:m .-2<CR>==
+nmap <leader>k :m .-2<CR>==
+nmap <leader>j :m .+1<CR>==
+
+" Move to buffer with two keys
+map <leader>n :bn<CR>
+map <leader>p :bp<CR>
+
+" Change to relative number <-> number
+nmap <F5> :set invrelativenumber<CR>
+
+" I'm no sure this is forever
 noremap <leader>f :Files<CR>
 noremap <leader>w :w<CR>
-nmap <F5> :set invrelativenumber<CR>
-map <leader>b :bnext<CR>
-map <leader>p :bprevious<CR>
+nnoremap Y y$
 
 " Remove whitespace after save
 autocmd BufWritePre * %s/\s\+$//e

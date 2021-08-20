@@ -164,3 +164,6 @@ alias rm-trash='sudo rm -rf public/packs public/packs-test tmp/storage storage t
 
 # to install starship: https://starship.rs/es-es/
 eval "$(starship init bash)"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
