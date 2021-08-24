@@ -1,10 +1,10 @@
 syntax enable
 
+set guicursor=
 " Stop acting like classic vi
 set nocompatible		" disable vi compability mode
 set noswapfile			" don't create swapfiles
 set nobackup			" don't backup, use git!
-set guicursor=
 
 " Enable filetype
 filetype plugin indent on
@@ -52,9 +52,14 @@ Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-endwise'
 Plug 'ap/vim-css-color'
+
 " Syntax highlight and other functions for some languages
 Plug 'vim-ruby/vim-ruby'
 Plug 'lifepillar/pgsql.vim'
+
+" Async Lint
+Plug 'dense-analysis/ale'
+
 
 call plug#end()
 
@@ -67,6 +72,7 @@ set background=dark
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1 " Enable tabline in the top of terminal
 let g:airline#extensions#tabline#formatter = 'unique_tail'
+let g:airline#extensions#ale#enabled = 1
 
 "FZF
 let g:fzf_layout = { 'right': '50%' }
@@ -76,6 +82,13 @@ let $FZF_DEFAULTS_OPTS='--reverse'
 let ruby_operators = 1
 let ruby_pseudo_operators = 1
 let g:rubycomplete_rails = 1
+
+" Ale settings
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:ale_linters = { 'ruby': ['brakeman', 'rubocop', 'rails_best_practices'] }
+
 
 hi Normal guibg=NONE ctermbg=NONE
 " Mark trailing spaces depending on whether we have a fancy terminal or not
