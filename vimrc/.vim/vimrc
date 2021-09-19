@@ -44,22 +44,30 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
-Plug 'gruvbox-community/gruvbox'
-"Plug 'arcticicestudio/nord-vim'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'tpope/vim-endwise'
+
+" Syntax highlight
+Plug 'sheerun/vim-polyglot'
 Plug 'ap/vim-css-color'
 
-" Syntax highlight and other functions for some languages
-Plug 'vim-ruby/vim-ruby'
-Plug 'lifepillar/pgsql.vim'
+" Themes
+Plug 'gruvbox-community/gruvbox'
+"Plug 'arcticicestudio/nord-vim'
 
 " Async Lint
 Plug 'dense-analysis/ale'
 
+" Typing
+Plug 'jiangmiao/auto-pairs'
+Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
+
+" Like IDE
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'yggdroot/indentline'
 
 call plug#end()
 
@@ -117,16 +125,22 @@ nmap <leader>k :m .-2<CR>==
 nmap <leader>j :m .+1<CR>==
 
 " Move to buffer with two keys
-map <leader>n :bn<CR>
-map <leader>p :bp<CR>
+map <leader>bn :bn<CR>
+map <leader>bp :bp<CR>
 map <leader>bd :bd<CR>
 
 " Change to relative number <-> number
 nmap <F5> :set invrelativenumber<CR>
 
-" I'm no sure this is forever
-noremap <leader>f :Files<CR>
-noremap <leader>w :w<CR>
+" Save and quit faster
+nmap <leader>w :w<CR>
+nmap <leader>q :q<CR>
+
+" FZF remaps
+nmap <leader>ff :Files<CR>
+nmap <leader>fw :Ag<CR>
+
+"I'm no sure this is forever
 nnoremap Y y$
 
 " Remove whitespace after save
