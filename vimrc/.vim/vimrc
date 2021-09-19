@@ -38,9 +38,6 @@ set showcmd  		        " show vim commands in normal mode
 set colorcolumn=80
 set signcolumn=yes
 
-command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
-
-
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
@@ -75,26 +72,6 @@ call plug#end()
 "colorscheme nord
 colorscheme gruvbox
 set background=dark
-
-" Vim airline
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1 " Enable tabline in the top of terminal
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#ale#enabled = 1
-
-"FZF
-let g:fzf_layout = { 'right': '50%' }
-let $FZF_DEFAULTS_OPTS='--reverse'
-
-" Vim Ruby, some settings
-let ruby_operators = 1
-let ruby_pseudo_operators = 1
-let g:rubycomplete_rails = 1
-
-" Ale settings
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
 
 hi Normal guibg=NONE ctermbg=NONE
 " Mark trailing spaces depending on whether we have a fancy terminal or not
@@ -136,12 +113,11 @@ nmap <F5> :set invrelativenumber<CR>
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
 
-" FZF remaps
-nmap <leader>ff :Files<CR>
-nmap <leader>fw :Ag<CR>
-
 "I'm no sure this is forever
 nnoremap Y y$
 
 " Remove whitespace after save
 autocmd BufWritePre * %s/\s\+$//e
+
+" Command to save with file is readonly
+command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
