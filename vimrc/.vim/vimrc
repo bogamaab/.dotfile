@@ -43,6 +43,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'ryanoasis/vim-devicons'
+Plug 'szw/vim-maximizer'
 
 " Syntax highlight
 Plug 'sheerun/vim-polyglot'
@@ -106,6 +107,16 @@ map <leader>bn :bn<CR>
 map <leader>bp :bp<CR>
 map <leader>bd :bd<CR>
 
+" Split
+map <leader>vs :vsp<CR>
+map <leader>hs :sp<CR>
+
+" Resizing Toggle
+nmap <leader>ms :MaximizerToggle<CR>
+nmap <leader>> 10<C-w>>
+nmap <leader>< 10<C-w><
+nmap <leader>es <C-w>o
+
 " Change to relative number <-> number
 nmap <F5> :set invrelativenumber<CR>
 
@@ -118,6 +129,22 @@ nnoremap Y y$
 
 " Remove whitespace after save
 autocmd BufWritePre * %s/\s\+$//e
+
+" Close tag
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.html.erb'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+let g:closetag_filetypes = 'html,xhtml,phtml,html.erb'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx'
+
+let g:closetag_emptyTags_caseSensitive = 1
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ 'typescriptreact': 'jsxRegion,tsxRegion',
+    \ 'javascriptreact': 'jsxRegion',
+    \ }
+let g:closetag_shortcut = '>'
+let g:closetag_close_shortcut = '<leader>>'
 
 " Command to save with file is readonly
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!

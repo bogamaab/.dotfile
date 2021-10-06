@@ -155,7 +155,7 @@ man (){
 
 # Docker
 
-alias run-compose='sudo docker-compose'
+alias run-compose='docker-compose'
 alias run-server='run-compose up web'
 alias run-any='run-compose run web'
 alias run-rails='run-any bundle exec rails'
@@ -171,7 +171,7 @@ alias eslint='./node_modules/.bin/eslint'
 
 # Others
 
-alias rm-trash='sudo rm -rf public/packs public/packs-test tmp/storage storage tmp/pids/server.pid log'
+alias rm-trash='sudo rm -rf public/packs public/packs-test tmp/storage storage tmp/pids/server.pid log tmp/cache'
 
 # to install starship: https://starship.rs/es-es/
 eval "$(starship init bash)"
