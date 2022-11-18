@@ -1,17 +1,17 @@
 syntax enable
 
-set guicursor=
-" Stop acting like classic vi
-set nocompatible		" disable vi compability mode
-set noswapfile			" don't create swapfiles
-set nobackup			" don't backup, use git!
-
-" Enable filetype
+" Enable filetype {
 filetype plugin indent on
+" }
+
+" no compatible for vim-polyglot
+set nocompatible		" disable vi compability mode
 
 " Persist undo history between file editing sessions.
 set undofile
 set undodir=~/.vim/undodir
+set noswapfile			" don't create swapfiles
+set nobackup			" don't backup, use git!
 
 " Modify indenting settings
 set autoindent			" autoindent always ON
@@ -24,6 +24,7 @@ set hidden
 set noshowmode
 set laststatus=1 		" always show statusbar
 set wildmenu			" enable visual wildmenu
+set wildoptions=pum " List options in menu like a popup
 
 set nowrap			" don't wrap long lines
 set number			" show line numbers
@@ -51,7 +52,6 @@ Plug 'ap/vim-css-color'
 
 " Themes
 Plug 'gruvbox-community/gruvbox'
-"Plug 'arcticicestudio/nord-vim'
 
 " Async Lint
 Plug 'dense-analysis/ale'
@@ -66,13 +66,13 @@ Plug 'tpope/vim-endwise'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'yggdroot/indentline'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree'
 
 call plug#end()
 
 " Colorscheme
-"colorscheme nord
 colorscheme gruvbox
-set background=dark
 
 hi Normal guibg=NONE ctermbg=NONE
 " Mark trailing spaces depending on whether we have a fancy terminal or not
@@ -84,11 +84,10 @@ else
 	set list
 endif
 
-
 let $RTP=split(&runtimepath, ',')[0]
 let $RC="$HOME/.vim/vimrc"
+set path =.,**
 let mapleader=" "
-
 
 " Search and result center my screen
 nmap n nzzzv
@@ -106,6 +105,7 @@ nmap <leader>j :m .+1<CR>==
 map <leader>bn :bn<CR>
 map <leader>bp :bp<CR>
 map <leader>bd :bd<CR>
+map <leader>b# :b#<CR>
 
 " Split
 map <leader>vs :vsp<CR>
@@ -123,28 +123,14 @@ nmap <F5> :set invrelativenumber<CR>
 " Save and quit faster
 nmap <leader>w :w<CR>
 nmap <leader>q :q<CR>
+nmap <leader>wq :wq<CR>
+nmap <leader>Q :q!<CR>
 
 "I'm no sure this is forever
 nnoremap Y y$
 
 " Remove whitespace after save
 autocmd BufWritePre * %s/\s\+$//e
-
-" Close tag
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml, *.html.erb'
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
-let g:closetag_filetypes = 'html,xhtml,phtml,html.erb'
-let g:closetag_xhtml_filetypes = 'xhtml,jsx'
-
-let g:closetag_emptyTags_caseSensitive = 1
-let g:closetag_regions = {
-    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-    \ 'javascript.jsx': 'jsxRegion',
-    \ 'typescriptreact': 'jsxRegion,tsxRegion',
-    \ 'javascriptreact': 'jsxRegion',
-    \ }
-let g:closetag_shortcut = '>'
-let g:closetag_close_shortcut = '<leader>>'
 
 " Command to save with file is readonly
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!

@@ -164,6 +164,7 @@ alias run-test='run-rspec spec/factories/ spec/lib/ spec/presenters/ spec/servic
 alias run-features='run-rspec spec/features/ --fail-fast'
 alias run-deploy='run-any bundle exec cap production deploy'
 alias containers-down='docker rm -f $(docker ps -aq)'
+alias cleandocker='docker rm -f $(docker ps -aq) && docker volume rm $(docker volume ls -q)'
 
 # Eslint
 
